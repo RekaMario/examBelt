@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        <title>Document</title>
+    </head>
+    <body class="bg-secondary">
+        <div class="w-75 mx-auto bg-light my-5 d-flex">
+            <div>
+                {% with messages = get_flashed_messages(category_filter=["signUpSuccessful"]) %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p class="text-success bg-info text-center">{{message}}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+        </div>
+            <div class=" w-100">
+            <form action="/create_user" method="POST" class="col-6 m-auto">
+                <h1>Register</h1>
+                    {% with messages = get_flashed_messages(category_filter=["emailExist"]) %}
+                        {% if messages %}
+                            {% for msg in messages %}
+                                <small class="form-text text-danger">{{msg}}</small>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                <div class="form-group">
+                    <label for="first_name" class="my-1">First Name</label>
+                    <input type="text" name="first_name" class="form-control my-1" placeholder="Enter first name">
+                        {% with messages = get_flashed_messages(category_filter=["first_name"]) %}
+                            {% if messages %}
+                                {% for msg in messages %}
+                                    <small class="form-text text-danger">{{msg}}</small>
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+                </div>
+                <div class="form-group">
+                    <label for="last_name" class="my-1">Last Name</label>
+                    <input type="text" name="last_name" class="form-control my-1" placeholder="Enter last name">
+                    {% with messages = get_flashed_messages(category_filter=["last_name"]) %}
+                            {% if messages %}
+                                {% for msg in messages %}
+                                    <small class="form-text text-danger">{{msg}}</small>
+                                {% endfor %}
+                            {% endif %}
+                    {% endwith %}
+                </div>
+                <div class="form-group">
+                    <label for="email" class="my-1">Email address</label>
+                    <input type="email" class="form-control my-1" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+
+                    {% with messages = get_flashed_messages(category_filter=["email"]) %}
+                            {% if messages %}
+                                {% for msg in messages %}
+                                    <small class="form-text text-danger">{{msg}}</small>
+                                {% endfor %}
+                            {% endif %}
+                    {% endwith %}
+                </div>
+                <div class="form-group">
+                    <label for="password" class="my-1">Password</label>
+                    <input type="password" class="form-control my-1" name="password" placeholder="Password">
+                    {% with messages = get_flashed_messages(category_filter=["password"]) %}
+                            {% if messages %}
+                                {% for msg in messages %}
+                                    <small class="form-text text-danger">{{msg}}</small>
+                                {% endfor %}
+                            {% endif %}
+                    {% endwith %}
+                </div>
+                <div class="form-group">
+                    <label for="confirm_pass" class="my-1">Confirm Password</label>
+                    <input type="password" class="form-control my-1" name="confirm_pass" placeholder="Confirm your password">
+                    {% with messages = get_flashed_messages(category_filter=["confirm_pass"]) %}
+                            {% if messages %}
+                                {% for msg in messages %}
+                                    <small class="form-text text-danger">{{msg}}</small>
+                                {% endfor %}
+                            {% endif %}
+                    {% endwith %}
+                </div>
+                <input type="submit" class="btn btn-outline-danger my-2" value="Create User">
+            </form>
+        </div>
+            <!-- Login Part -->
+       
+        <div class="m-5 bg-dark w-100 ">
+            <form action="/login" method="POST" class="col-5">
+                <h1 class="text-warning my-1 mx-2"> Login</h1>
+                <div class="form-group">
+                    <label for="login_email" class="text-warning my-1 mx-2">Email</label>
+                    <input type="email" name="login_email" class="form-control my-1 mx-3"" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="password" class="text-warning my-1 mx-3">Password</label>
+                    <input type="password" name="password" class="form-control my-1 mx-3" placeholder="Enter your password">
+                    {% with messages = get_flashed_messages(category_filter=["emailLogin"]) %}
+                            {% if messages %}
+                                {% for msg in messages %}
+                                    <small class="form-text text-danger">{{msg}}</small>
+                                {% endfor %}
+                            {% endif %}
+                    {% endwith %}
+                </div>
+                <button type="submit" class="btn btn-outline-info mt-2 mx-3">Login</button>
+            </form>
+        </div>
+        </div>
+    </body>
+</html>
