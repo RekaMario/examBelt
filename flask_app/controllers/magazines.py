@@ -22,7 +22,7 @@ def add_subscriber(post_id):
 @app.route('/unsubscribe/<int:magazine_id>')
 def remove_subscriber(magazine_id):
     if 'user_id' not in session:
-        return redirect('/log_out')
+        return redirect('/logout')
     data = {
         'magazine_id': magazine_id,
         'user_id': session['user_id']
@@ -36,7 +36,7 @@ def remove_subscriber(magazine_id):
 @app.route('/show_magazine/<int:magazine_id>')
 def show_magazine(magazine_id):
     if 'user_id' not in session:
-        return redirect('/log_out')
+        return redirect('/logout')
     data = {
         'magazine_id': magazine_id
     }

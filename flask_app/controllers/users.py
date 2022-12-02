@@ -31,7 +31,7 @@ def create_user():
 @app.route('/profilePage')
 def account_info():
     if 'user_id' not in session:
-        return redirect('/log_out')
+        return redirect('/logout')
     data = {
         'user_id': session['user_id']
     }
